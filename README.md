@@ -6,7 +6,7 @@
 
 The use of CSS utility classes and the reactivity model provided by Petite-Vue helps build projects very fast!
 
-Demo website: [Lomography LomoInstant Automat | flyingV](https://flyingv-demo.netlify.app/demo/)
+Demo website: [Lomography LomoInstant Automat | flyingV](https://flyingv-demo.netlify.app/)
 
 ## Features
 
