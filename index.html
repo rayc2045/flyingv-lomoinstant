@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/39514595?s=32">
+    <title>Home Page</title>
+    <meta name="title" content="Create Petite App">
+    <meta name="description" content="Frontend-template that helps quickly start projects from scratch">
+    <meta name="keywords" content="front-end responsive utility-classes grid-layout responsive-design vue-template frontend-template animate-css front-end-template vue3 bootstrap5 petite-vue">
+    <meta name="author" content="Ray Chang">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://create-petite-app.netlify.app/intro/">
+    <meta property="og:title" content="Create Petite App">
+    <meta property="og:description" content="Frontend-template that helps quickly start projects from scratch">
+    <meta property="og:image" content="https://opengraph.githubassets.com/2469fa99cf18457e00fdde599b67f77cc3ff11f3195f336bef9e8b6ae314659d/rayc2045/create-petite-app">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://create-petite-app.netlify.app/intro/">
+    <meta property="twitter:title" content="Create Petite App">
+    <meta property="twitter:description" content="Frontend-template that helps quickly start projects from scratch">
+    <meta property="twitter:image" content="https://opengraph.githubassets.com/2469fa99cf18457e00fdde599b67f77cc3ff11f3195f336bef9e8b6ae314659d/rayc2045/create-petite-app">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,500,700&display=swap" />
+    <!-- Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/src/styles/style.css">
+    <script src="/src/libraries/mdb.min.js" defer></script>
+    <script src="/src/scripts/script.js" type="module"></script>
+  </head>
+  <body
+    v-cloak
+    class="min-vh-100 bg-light cursor-default"
+    :class="{ 'overflow-hidden': isLoading }"
+    style="--animate-duration: 1.2s"
+    @click="ContextMenu.isShow = false"
+    @contextmenu.prevent="ContextMenu.showMenu($event)"
+    @selectstart.prevent
+    @dragstart.prevent
+    @vue:mounted="init"
+  >
+    <!-- Content -->
+    <div class="min-vh-100 d-grid align-content-center">
+      <div class="container text-center">
+        <h1>Hello, developer! <span class="d-inline-block animate__animated animate__wobble animate__infinite">👋</span></h1>
+        <h5 style="margin-left: -0.6em;">
+          Learn usages from <a href="/intro">intro<span class="d-none d-sm-inline">duction</span></a>
+        </h5>
+      </div>
+    </div>
+
+    <!-- Context menu -->
+    <ul
+      v-if="ContextMenu.lists.length"
+      id="context-menu"
+      class="d-none d-lg-block position-fixed dropdown-menu show overflow-hidden"
+      :class="{ 'opacity-0 pe-none': !ContextMenu.isShow }"
+      style="z-index: 1000001;"
+    >
+      <li v-for="list in ContextMenu.lists">
+        <a
+          class="dropdown-item"
+          :href="list.link"
+          @click="ContextMenu.isShow = false"
+          @contextmenu.prevent.stop="$el.click()"
+        >{{ list.content }}</a>
+      </li>
+    </ul>
+
+    <!-- Loader -->
+    <div
+      v-if="isLoading"
+      class="vw-100 vh-100 position-fixed start-0 top-0 d-flex justify-content-center align-items-center"
+      style="z-index: 1000001; background-color: rgba(0, 0, 0, .1);"
+      @contextmenu.prevent.stop
+    >
+      <div class="spinner-border" style="color: dimgray;"></div>
+    </div>
+  </body>
+</html>

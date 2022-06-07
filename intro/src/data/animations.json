@@ -1,0 +1,195 @@
+[
+  {
+    "title": "Attention seekers",
+    "items": [
+      "bounce",
+      "flash",
+      "pulse",
+      "rubberBand",
+      "shakeX",
+      "shakeY",
+      "headShake",
+      "swing",
+      "tada",
+      "wobble",
+      "jello",
+      "heartBeat"
+    ],
+    "background": "indianred"
+  },
+  {
+    "title": "Back entrances",
+    "items": [
+      "backInDown",
+      "backInLeft",
+      "backInRight",
+      "backInUp"
+    ],
+    "background": "lightsalmon"
+  },
+  {
+    "title": "Back exits",
+    "items": [
+      "backOutDown",
+      "backOutLeft",
+      "backOutRight",
+      "backOutUp"
+    ],
+    "background": "lightsalmon"
+  },
+  {
+    "title": "Bouncing entrances",
+    "items": [
+      "bounceIn",
+      "bounceInDown",
+      "bounceInLeft",
+      "bounceInRight",
+      "bounceInUp"
+    ],
+    "background": "gold"
+  },
+  {
+    "title": "Bouncing exits",
+    "items": [
+      "bounceOut",
+      "bounceOutDown",
+      "bounceOutLeft",
+      "bounceOutRight",
+      "bounceOutUp"
+    ],
+    "background": "gold"
+  },
+  {
+    "title": "Fading entrances",
+    "items": [
+      "fadeIn",
+      "fadeInDown",
+      "fadeInDownBig",
+      "fadeInLeft",
+      "fadeInLeftBig",
+      "fadeInRight",
+      "fadeInRightBig",
+      "fadeInUp",
+      "fadeInUpBig",
+      "fadeInTopLeft",
+      "fadeInTopRight",
+      "fadeInBottomLeft",
+      "fadeInBottomRight"
+    ],
+    "background": "tan"
+  },
+  {
+    "title": "Fading exits",
+    "items": [
+      "fadeOut",
+      "fadeOutDown",
+      "fadeOutDownBig",
+      "fadeOutLeft",
+      "fadeOutLeftBig",
+      "fadeOutRight",
+      "fadeOutRightBig",
+      "fadeOutUp",
+      "fadeOutUpBig",
+      "fadeOutTopLeft",
+      "fadeOutTopRight",
+      "fadeOutBottomRight",
+      "fadeOutBottomLeft"
+    ],
+    "background": "tan"
+  },
+  {
+    "title": "Flippers",
+    "items": [
+      "flip",
+      "flipInX",
+      "flipInY",
+      "flipOutX",
+      "flipOutY"
+    ],
+    "background": "lightpink"
+  },
+  {
+    "title": "Lightspeed",
+    "items": [
+      "lightSpeedInRight",
+      "lightSpeedInLeft",
+      "lightSpeedOutRight",
+      "lightSpeedOutLeft"
+    ],
+    "background": "turquoise"
+  },
+  {
+    "title": "Rotating entrances",
+    "items": [
+      "rotateIn",
+      "rotateInDownLeft",
+      "rotateInDownRight",
+      "rotateInUpLeft",
+      "rotateInUpRight"
+    ],
+    "background": "lightseagreen"
+  },
+  {
+    "title": "Rotating exits",
+    "items": [
+      "rotateOut",
+      "rotateOutDownLeft",
+      "rotateOutDownRight",
+      "rotateOutUpLeft",
+      "rotateOutUpRight"
+    ],
+    "background": "lightseagreen"
+  },
+  {
+    "title": "Specials",
+    "items": [
+      "hinge",
+      "jackInTheBox",
+      "rollIn",
+      "rollOut"
+    ],
+    "background": "yellowgreen"
+  },
+  {
+    "title": "Zooming entrances",
+    "items": [
+      "zoomIn",
+      "zoomInDown",
+      "zoomInLeft",
+      "zoomInRight",
+      "zoomInUp"
+    ],
+    "background": "plum"
+  },
+  {
+    "title": "Zooming exits",
+    "items": [
+      "zoomOut",
+      "zoomOutDown",
+      "zoomOutLeft",
+      "zoomOutRight",
+      "zoomOutUp"
+    ],
+    "background": "plum"
+  },
+  {
+    "title": "Sliding entrances",
+    "items": [
+      "slideInDown",
+      "slideInLeft",
+      "slideInRight",
+      "slideInUp"
+    ],
+    "background": "skyblue"
+  },
+  {
+    "title": "Sliding exits",
+    "items": [
+      "slideOutDown",
+      "slideOutLeft",
+      "slideOutRight",
+      "slideOutUp"
+    ],
+    "background": "skyblue"
+  }
+]
