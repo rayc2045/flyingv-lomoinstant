@@ -1,47 +1,66 @@
 'use strict';
 
 import { createApp } from '/src/libraries/petite-vue.es.min.js';
-import { getWindowWidth } from '/src/scripts/utils.js';
-import { ContextMenu } from '/src/scripts/components.js';
+import {
+  fetchData,
+  getWindowWidth,
+  toggleClasses,
+  thousandFormat,
+} from '/src/scripts/utils.js';
 
-((window, document) => {
-  ContextMenu.lists = [
-    // { content: 'Features', link: '#features' },
-  ];
-
-  const STORAGE_KEY = 'storage-key';
-  const localStore = {
-    fetch() {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY));
-    },
-    save(id) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(id));
-    },
-    remove() {
-      localStorage.removeItem(STORAGE_KEY);
-    },
-  };
-
+((
+  window,
+  document,
+  createApp,
+  fetchData,
+  getWindowWidth,
+  toggleClasses,
+  thousandFormat
+) => {
   const App = {
-    ContextMenu,
     windowWidth: getWindowWidth(),
     isPrefersReducedMotion: window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches,
     isLoading: true,
+    contents: ['project', 'posts', 'comments'],
+    currentContentIdx: 0,
+    posts: [],
+    comments: [],
+    rewards: [],
     async init() {
+      this.rewards = await fetchData('https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/src/data/rewards.json');
       this.isLoading = false;
     },
+    async updateContent(idx) {
+      this.currentContentIdx = idx;
+      if (idx === 0) return;
+      if (idx === 1 && !this.posts.length) {
+        this.isLoading = true;
+        this.posts = await fetchData('https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/src/data/posts.json');
+        return (this.isLoading = false);
+      }
+      if (idx === 2 && !this.comments.length) {
+        this.isLoading = true;
+        this.comments = await fetchData('https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/src/data/comments.json');
+        return (this.isLoading = false);
+      }
+    },
+    toggleClasses,
+    thousandFormat,
     updateWindowWidth() {
       this.windowWidth = getWindowWidth();
     },
   };
 
   createApp(App).mount();
-  window.onscroll = () => (ContextMenu.isShow = false);
-
-  window.onresize = () => {
-    App.updateWindowWidth();
-    ContextMenu.isShow = false;
-  };
-})(window, document);
+  window.onresize = () => App.updateWindowWidth();
+})(
+  window,
+  document,
+  createApp,
+  fetchData,
+  getWindowWidth,
+  toggleClasses,
+  thousandFormat
+);

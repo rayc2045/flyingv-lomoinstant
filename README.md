@@ -1,12 +1,12 @@
-<img src="https://raw.githubusercontent.com/rayc2045/create-petite-app/main/intro/images/programming.svg" width="320" />
+![cover](https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/cover.png)
 
-# 🤘 Create Petite App
+# 🤘 FlyingV demo built with create-petite-app
 
 `create-petite-app` is a frontend template that includes libraries MDBootstrap, Animate.css, and Petite-Vue.
 
 The use of CSS utility classes and the reactivity model provided by Petite-Vue helps build projects very fast!
 
-Demo website: [Lomography LomoInstant Automat | flyingV](https://create-petite-app.netlify.app/demo/)
+Demo website: [Lomography LomoInstant Automat | flyingV](https://flyingv-demo.netlify.app/demo/)
 
 ## Features
 

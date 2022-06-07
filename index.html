@@ -4,72 +4,735 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/39514595?s=32">
-    <title>Home Page</title>
-    <meta name="title" content="Create Petite App">
-    <meta name="description" content="Frontend-template that helps quickly start projects from scratch">
+    <link rel="icon" href="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/favicon.ico">
+    <title>Lomography LomoInstant Automat | FlyingV</title>
+    <meta name="title" content="Lomography LomoInstant Automat | flyingV">
+    <meta name="description" content="以最高階的自動測光系統及創意功能，打造全新拍立得 Lomo'Instant Automat!">
     <meta name="keywords" content="front-end responsive utility-classes grid-layout responsive-design vue-template frontend-template animate-css front-end-template vue3 bootstrap5 petite-vue">
     <meta name="author" content="Ray Chang">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://create-petite-app.netlify.app/intro/">
-    <meta property="og:title" content="Create Petite App">
-    <meta property="og:description" content="Frontend-template that helps quickly start projects from scratch">
-    <meta property="og:image" content="https://opengraph.githubassets.com/2469fa99cf18457e00fdde599b67f77cc3ff11f3195f336bef9e8b6ae314659d/rayc2045/create-petite-app">
+    <meta property="og:url" content="https://create-petite-app.netlify.app/demo/">
+    <meta property="og:title" content="Lomography LomoInstant Automat | flyingV">
+    <meta property="og:description" content="以最高階的自動測光系統及創意功能，打造全新拍立得 Lomo'Instant Automat!">
+    <meta property="og:image" content="https://static.flyingv.asia/static/1024x768/projects/13958/57f5d1b087dde.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://create-petite-app.netlify.app/intro/">
-    <meta property="twitter:title" content="Create Petite App">
-    <meta property="twitter:description" content="Frontend-template that helps quickly start projects from scratch">
-    <meta property="twitter:image" content="https://opengraph.githubassets.com/2469fa99cf18457e00fdde599b67f77cc3ff11f3195f336bef9e8b6ae314659d/rayc2045/create-petite-app">
+    <meta property="twitter:url" content="https://create-petite-app.netlify.app/demo/">
+    <meta property="twitter:title" content="Lomography LomoInstant Automat | flyingV">
+    <meta property="twitter:description" content="以最高階的自動測光系統及創意功能，打造全新拍立得 Lomo'Instant Automat!">
+    <meta property="twitter:image" content="https://static.flyingv.asia/static/1024x768/projects/13958/57f5d1b087dde.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,500,700&display=swap" />
     <!-- Styles & Scripts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="/src/styles/style.css">
+    <link rel="stylesheet" href="./src/styles/style.css">
     <script src="/src/libraries/mdb.min.js" defer></script>
-    <script src="/src/scripts/script.js" type="module"></script>
+    <script src="./src/scripts/script-min.js" type="module"></script>
   </head>
   <body
     v-cloak
-    class="min-vh-100 bg-light cursor-default"
+    class="min-vh-100 overflow-x-hidden"
     :class="{ 'overflow-hidden': isLoading }"
     style="--animate-duration: 1.2s"
-    @click="ContextMenu.isShow = false"
-    @contextmenu.prevent="ContextMenu.showMenu($event)"
-    @selectstart.prevent
     @dragstart.prevent
     @vue:mounted="init"
   >
-    <!-- Content -->
-    <div class="min-vh-100 d-grid align-content-center">
-      <div class="container text-center">
-        <h1>Hello, developer! <span class="d-inline-block animate__animated animate__wobble animate__infinite">👋</span></h1>
-        <h5 style="margin-left: -0.6em;">
-          Learn usages from <a href="/intro">intro<span class="d-none d-sm-inline">duction</span></a>
-        </h5>
-      </div>
-    </div>
+    <header class="mb-xl-3">
+      <nav class="py-1 sticky-top navbar navbar-expand-lg navbar-light bg-white shadow-none border-bottom" style="z-index: 1000001;">
+        <div class="position-relative container-xl justify-content-start">
+          <!-- toggle menu -->
+          <button
+            class="navbar-toggler text-danger"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarButtons"
+            aria-controls="navbarButtons"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <!-- logo -->
+          <a class="me-2 navbar-brand" style="height: 4rem;" href="https://www.flyingv.cc/">
+            <img src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/logo.svg" :height="`${windowWidth < 768 ? '48' : '64'}`" alt="FlyingV Logo" loading="lazy" />
+          </a>
+          <!-- toggle navbar -->
+          <div class="pb-3 pb-lg-0 collapse navbar-collapse" id="navbarButtons">
+            <ul class="mb-2 mb-lg-0 navbar-nav">
+              <li class="nav-item">
+                <!-- lang switch -->
+                <div class="me-1 d-sm-none nav-link dropdown">
+                  <button
+                    type="button"
+                    class="px-2 py-1 position-realtive bg-white shadow-none border-dark border-1"
+                    style="margin-top: .5rem;"
+                    id="dropdownMenuOffset"
+                    data-mdb-toggle="dropdown"
+                    aria-expanded="false"
+                    data-mdb-offset="10,20"
+                    @click="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')"
+                    @blur="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')"
+                  >
+                    <small class="pe-3">中文</small>
+                    <i class="fas fa-caret-down text-dark"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <li><a class="dropdown-item" href="https://www.flyingv.cc/projects/13958?lang=en">English</a></li>
+                    <li><a class="dropdown-item" href="https://www.flyingv.cc/projects/13958?lang=ja">日本語</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="mx-2 nav-item">
+                <a class="nav-link text-black text-hover-danger" href="https://www.flyingv.cc/about"><small>關於</small></a>
+              </li>
+              <li class="mx-2 nav-item">
+                <a class="nav-link text-black text-hover-danger" href="https://www.flyingv.cc/projects/create"><small>提案</small></a>
+              </li>
+              <li class="mx-2 nav-item">
+                <a class="nav-link text-black text-hover-danger" href="https://www.flyingv.cc/projects"><small>探索</small></a>
+              </li>
+            </ul>
+            <form class="ms-lg-3 w-auto d-flex input-group">
+              <span class="input-group-text border-0" id="search-addon">
+                <i class="fas fa-search"></i>
+              </span>
+              <input type="search" class="form-control rounded" placeholder="搜尋專案" aria-label="Search" aria-describedby="search-addon">
+            </form>
+          </div>
 
-    <!-- Context menu -->
-    <ul
-      v-if="ContextMenu.lists.length"
-      id="context-menu"
-      class="d-none d-lg-block position-fixed dropdown-menu show overflow-hidden"
-      :class="{ 'opacity-0 pe-none': !ContextMenu.isShow }"
-      style="z-index: 1000001;"
-    >
-      <li v-for="list in ContextMenu.lists">
-        <a
-          class="dropdown-item"
-          :href="list.link"
-          @click="ContextMenu.isShow = false"
-          @contextmenu.prevent.stop="$el.click()"
-        >{{ list.content }}</a>
-      </li>
-    </ul>
+          <div class="ms-auto position-absolute d-flex dropdown" style="right: 1rem; top: .5rem;">
+            <!-- lang switch -->
+            <div class="me-1 d-none d-sm-block dropdown">
+              <button
+                type="button"
+                class="me-4 px-2 py-1 position-realtive bg-white shadow-none border-dark border-1"
+                style="margin-top: .5rem;"
+                id="dropdownMenuOffset"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+                data-mdb-offset="10,20"
+                @click="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')"
+                @blur="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')"
+              >
+                <small class="pe-3">中文</small>
+                <i class="fas fa-caret-down text-dark"></i>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                <li><a class="dropdown-item" href="https://www.flyingv.cc/projects/13958?lang=en">English</a></li>
+                <li><a class="dropdown-item" href="https://www.flyingv.cc/projects/13958?lang=ja">日本語</a></li>
+              </ul>
+            </div>
+            <!-- avatar -->
+            <a class="ps-4 py-1 d-flex align-items-center dropdown-toggle hidden-arrow text-decoration-none border-start" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false" @click="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')" @blur="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')">
+              <img src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/nonuser.svg" class="rounded-circle me-2" height="42" alt="Black and White Portrait" loading="lazy">
+              <i class="fas fa-caret-down text-dark"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+              <li>
+                <a class="dropdown-item" href="login.html">登入</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="register.html">註冊</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Project intro -->
+      <section class="mt-5 container-fluid container-lg">
+        <div class="py-2 badge badge-light rounded-0">科技設計</div>
+        <h4 class="my-2 fw-bold">Lomography LomoInstant Automat</h4>
+        <div class="mt-4 row">
+          <div class="col-12 px-0 col-md-8 px-md-2">
+            <!-- video block -->
+            <div class="position-relative w-100 ratio-16x9" @click="[...$el.children].forEach(el => el.classList.toggle('d-none'))">
+              <!-- video cover -->
+              <img class="w-100 w-100 cursor-pointer" style="filter: brightness(.9);" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/cover.avif" alt="" loading="lazy">
+              <!-- play button in center -->
+              <div
+                class="
+                  absolute-center rounded-circle
+                  d-flex justify-content-center align-items-center
+                  border border-2 border-white cursor-pointer"
+                style="width: 2.5rem; height: 2.5rem;"
+              >
+                <big><i class="fas fa-caret-right text-white"></i></big>
+              </div>
+              <!-- embed viemo video -->
+              <div class="d-none position-relative" style="padding-top: 56.25%;">
+                <div class="position-absolute top-0 start-0 w-100 h-100">
+                  <iframe src="//player.vimeo.com/video/181010761" width="100%" height="100%" allowfullscreen="" frameborder="0" id="player"></iframe>
+                </div>
+              </div>
+            </div>
+            <!-- progress -->
+            <div class="px-md-0 my-5 py-4 d-xl-none position-relative container-fluid">
+              <div class="progress">
+                <div
+                  class="progress-bar bg-danger"
+                  role="progressbar"
+                  style="width: 90%;"
+                  aria-valuenow="90"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+                <div class="position-absolute w-100 d-flex" style="margin-top: -1.8rem">
+                  <div class="d-flex flex-column">
+                    <big class="text-danger fw-bold mb-3">$0</big>
+                    <big class="text-black">募資開始</big>
+                  </div>
+                  <div class="position-absolute d-flex flex-column start-50">
+                    <!-- circle -->
+                    <div
+                      class="position-absolute top-50 d-flex justify-content-center align-items-center rounded-circle bg-danger"
+                      style="width: 1rem; height: 1rem; left: -1.5rem; transform: translateY(-50%)"
+                    >
+                      <div
+                        class=" rounded-circle bg-white"
+                        style="width: .55rem; height: .55rem;"
+                      ></div>
+                    </div>
+                    <big class="text-danger fw-bold mb-3">$200,000</big>
+                    <big class="text-black">募資目標</big>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 px-4 col-md-4 px-md-3">
+            <!-- progress -->
+            <div class="d-none d-xl-block mb-4 py-4 position-relative">
+              <div class="progress">
+                <div
+                  class="progress-bar bg-danger"
+                  role="progressbar"
+                  style="width: 90%;"
+                  aria-valuenow="90"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+                <div class="position-absolute w-100 d-flex" style="margin-top: -1.8rem">
+                  <div class="d-flex flex-column">
+                    <big class="text-danger fw-bold mb-3">$0</big>
+                    <big class="text-black">募資開始</big>
+                  </div>
+                  <div class="position-absolute d-flex flex-column start-50">
+                    <!-- circle -->
+                    <div
+                      class="position-absolute top-50 d-flex justify-content-center align-items-center rounded-circle bg-danger"
+                      style="width: 1rem; height: 1rem; left: -1.5rem; transform: translateY(-50%)"
+                    >
+                      <div
+                        class=" rounded-circle bg-white"
+                        style="width: .55rem; height: .55rem;"
+                      ></div>
+                    </div>
+                    <big class="text-danger fw-bold mb-3">$200,000</big>
+                    <big class="text-black">募資目標</big>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <p class="mb-1 text-muted"><small>目標 NTD$200,000</small></p>
+              <h2 class="fw-bold">$3,052,585</h2>
+            </div>
+            <div class="mb-4">
+              <p class="mb-1 text-muted"><small>贊助人數</small></p>
+              <h2 class="fw-bold">703 人</h2>
+            </div>
+            <div class="mb-4">
+              <p class="mb-1 text-muted"><small>已結束</small></p>
+            </div>
+            <div class="mb-4">
+              <p class="px-3 text-black lh-sm border-start border-4 border-danger">
+                <small><small>2016/09/02 - 2016/10/08 期間募資，專案募資成功！</small></small>
+              </p>
+            </div>
+            <div class="mb-4 d-flex align-items-center">
+              <img class="rounded-circle" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/5b2f0a6e0f5d3.jpeg" alt="" height="48px" loading="lazy">
+              <div class="ms-2 d-flex flex-column">
+                <small class="mb-0 text-muted">提案者</small>
+                <a class="text-dark text-hover-danger text-decoration-underline" href="https://www.lomography.tw/" target="_blank" rel="noreferrer noopener">Lomography Taiwan</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <!-- Project description -->
+    <section>
+      <div
+        class="bg-light sticky-top"
+        style="z-index: 1021;"
+      >
+        <!-- full list -->
+        <div class="container d-none d-md-block">
+          <div class="row">
+            <div class="col-8 d-flex justify-content-around">
+              <div
+                v-for="(content, idx) in contents"
+                data-content="`${content}`"
+                @click="updateContent(idx)"
+              >
+                <a
+                  href="#content"
+                  class="py-4 d-block text-dark text-decoration-none"
+                  :class="{ 'fw-bold border-bottom border-dark border-3': idx === currentContentIdx }"
+                >{{ content === 'project' ? '專案內容' : content === 'posts' ? '進度' : '留言' }}</a>
+              </div>
+            </div>
+            <div class="col-4 px-md-0 px-lg-2 d-flex justify-content-center align-items-center">
+              <div class="px-lg-1 px-xl-4 px-xxl-5 w-100">
+                <button
+                  class="py-2 w-100 bg-transparent bg-hover-light border border-dark"
+                  id="dropdownMenuButton"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >分享</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li>
+                    <a class="dropdown-item" href="https://zh-tw.facebook.com/lomographytaiwan/" target="_blank" rel="noreferrer noopener"><i class="me-1 fab fa-facebook-square"></i> FB</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" @click="window.open('https://lineit.line.me/share/ui?url=https://www.flyingv.cc/projects/13958', 'Line-share', config='height=500,width=500');"><i class="me-1 fab fa-line"></i> Line</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- mobile list -->
+        <div class="d-md-none dropdown">
+          <button
+            class="py-4 d-block mx-auto bg-transparent border-0"
+            type="button"
+            id="contentDropdownMenu"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+            @click="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')"
+            @blur="toggleClasses($el.querySelector('i'), 'fa-caret-down fa-caret-up')"
+          >
+            內容選單<i class="ms-2 fas fa-caret-down text-dark"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="contentDropdownMenu">
+            <li
+              v-for="(content, idx) in contents"
+              data-content="`${content}`"
+              @click="updateContent(idx)"
+            >
+              <a href="#content" class="d-block dropdown-item text-dark">{{ content === 'project' ? '專案內容' : content === 'posts' ? '進度' : '留言' }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div id="content" class="col-12 col-md-8">
+            <div class="pb-0 pb-md-5 content">
+              <div :class="{ 'd-none': currentContentIdx !== 0 }">
+                <p class="my-5 ps-4 py-3 fw-bold bg-light">
+                  <small><a class="text-danger" href="https://www.flyingv.cc/projects/13958/posts/13442" target="_blank" rel="noreferrer noopener">【新品上線】 Diana Instant Square</a></small>
+                </p>
+                <p class="fw-bold">謝謝大家的支持，Lomo'Instant Automat 拍立得相機已成功集資，目前生產進度十分理想，預計於 2016 月 12 月送出所有回饋。目前亦於 Lomography 網上商店開放預購，錯過了 flyingV 專案的朋友可<a class="text-danger" href="https://shop.lomography.com/tw/cameras/lomo-instant-automat" target="_blank" rel="noreferrer noopener">《按此》</a>預購。</p>
+                <p class="fw-bold">若對本公司之商品有銷售代理之興趣，歡迎以電郵聯繫 <a class="text-danger" href="mailto:orders-asia@lomography.com" target="_blank" rel="noreferrer noopener">orders-asia@lomography.com</a>。</p>
+  
+                <hr class="my-5">
+  
+                <h4 class="title">Lomo’Instant Automat — 你每日的即時靈感之源</h4>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/01.gif" alt="" loading="lazy">
+                <ul>
+                  <li>最強大的拍立得相機：全新設計的終極拍立得系統，令 Lomo'Instant Automat 的快門速度、光圈設定和閃光燈強度都能夠在任何光線的情況下自動調節，無可挑剔的進行拍攝。</li>
+                  <li>最具代表性的創意功能：打破攝影每個界限，為你帶來超現實的藝術創意和簡單快拍！Lomo’Instant Automat 以無限重曝、長時間曝光、外置鏡頭、遙控快門等，進一步提昇攝影創意。</li>
+                  <li>由內至外、外至內的精心設計：輕巧、聰明及迷人的 Lomo’Instant Automat 內外兼備，還有 4 款不同的時尚設計，加上豐富的配件套裝，讓你的攝影靈感源源不絕。</li>
+                  <li>快速簡單的對焦模式：擁有簡易的三段對焦模式，讓你可以快速對焦並拍下最重要的瞬間！</li>
+                  <li>再度光榮回歸集資平台：有著過去 5 個成功並按時完成發貨的集資計劃，我們已準備好接受全新的 flyingV 集資挑戰，同時帶來豐厚優惠及禮遇給每一位支持者。</li>
+                </ul>
+  
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/02.gif" alt="" loading="lazy">
+                <h4 class="title">按下快門，瞬間跳進創意領域</h4>
+                <p>Lomo’Instant Automat 相機與其他拍立得相機截然不同。Lomo’Instant Automat 不但完全自動，而且具備不同的創意功能，用法簡單方便，非常適合攝影新手甚至攝影專家使用。其他技術考慮就放心交托給我們照顧，你可以忘記晝夜，捕捉生活的瞬間。</p>
+                <p>Lomo'Instant Automat 保留了 Lomo'Instant 所有創意功能的同時，加入了四大新功能：全自動曝光系統、三段區域對焦、LED 底片數量提示燈及遙控快門！體積上也更進一步，能輕巧易攜。Lomo'Instant 家族成員各有千秋：</p>
+                <div class="my-4">
+                  <p class="fw-bold">Lomo'Instant Automat</p>
+                  <p class="mb-0">⭕️ 標準 35 mm 鏡頭、可外置廣角及其他鏡頭（需購買連鏡頭套裝）</p>
+                  <p class="mb-0">⭕️ 全自動測光、成功率 100%</p>
+                  <p class="mb-0">⭕️ 新增 LED 底片提示燈、可遙控快門</p>
+                  <p class="mb-0">⭕️ 標誌式的創意功能</p>
+                  <p class="mb-0">⭕️ 使用 Fujifilm Instax Mini 底片（卡片大小）</p>
+                </div>
+                <div class="my-4">
+                  <p class="fw-bold">
+                    <a class="text-danger" href="https://microsites.lomography.com/lomo-instant-camera/zh/" target="_blank" rel="noreferrer noopener">Lomo'Instant</a>
+                  </p>
+                  <p class="mb-0">⭕️ 內置廣角鏡頭、輕鬆自拍無難度</p>
+                  <p class="mb-0">⭕️ 可換三款鏡頭 （需購買連鏡頭套裝）</p>
+                  <p class="mb-0">⭕️ 標誌式的創意功能</p>
+                  <p class="mb-0">⭕️ 使用 Fujifilm Instax Mini 底片（卡片大小）</p>
+                </div>
+                <div class="mb-4">
+                  <p class="fw-bold">
+                    <a class="text-danger" href="https://microsites.lomography.com/lomo-instant-wide-camera/zh/" target="_blank" rel="noreferrer noopener">Lomo'Instant Wide</a>
+                  </p>
+                  <p class="mb-0">⭕️ 全自動測光、成功率 100%</p>
+                  <p class="mb-0">⭕️ 可遙控快門</p>
+                  <p class="mb-0">⭕️ 標誌式的創意功能</p>
+                  <p class="mb-0">⭕️ 可換兩款鏡頭 （需購買連鏡頭套裝）</p>
+                  <p class="mb-0">⭕️ 使用 Fujifiln Instax Wide 底片、大小為 Instax Mini 的兩倍</p>
+                </div>
+  
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/03.jpeg" alt="" loading="lazy">
+                <h4 class="title">創意，從此變得容易</h4>
+                <p class="fw-bold">拍攝摸式</p>
+                <p>Lomo’Instant Automat 的兩種拍攝模式，讓你可以在任何情況下都能夠完美捕捉畫面。想跟朋友進行自拍？或是進行偉大的實驗創作？Lomo’Instant Automat 都能夠讓你的夢想成真！</p>
+                <ul>
+                  <li> 自動拍攝模式：把 Lomo’Instant Automat 切換至自動拍攝模式（A），相機便會因應環境自動調節快門速度、光圈設定以及閃光燈功能。Lomo’Instant Automat 配備 f/8 及 f/22 光圈。
+                  </li>
+                  <li>創意拍攝模式（B 快門）：對夜貓子來說，B 快門創意拍攝模式可讓你進行長達 30 秒的長時間曝光。在昏暗環境及晚上使用，創作好玩又漂亮的光影塗鴉最適合不過！</li>
+                </ul>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/04.avif" alt="" loading="lazy">
+                <p class="fw-bold">史上最具創意的功能及配件</p>
+                <p>Lomo’Instant Automat 是最具創意拍立得相機，Combo 連鏡頭套裝更包括三款不同鏡頭，讓創意無限滾動！</p>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/05.jpeg" alt="" loading="lazy">
+                <ul>
+                  <li>內置鏡頭：Lomo’Instant Automat 內置鏡頭的等效焦距為 35mm，適合隨時隨地率性拍攝。</li>
+                  <li>關閉閃光燈：想把閃光燈關上來拍攝自然光源的照片？沒問題，一切在你掌握內！</li>
+                  <li>備有遙控快門功能的鏡頭蓋：無論是一大班朋友合照或一個人旅行，想拍照再不用假手於人。</li>
+                </ul>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/06.gif" alt="" loading="lazy">
+                <ul>
+                  <li>無限制多重曝光：曝光一次恐怕不足以表達當下的每個細節。這時就是切換至多重曝光模式拍攝的時候了！</li>
+                </ul>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/07.jpeg" alt="" loading="lazy">
+                <ul>
+                  <li>曝光補償 +/- 1：讓你因應環境的光線強弱進行曝光補償。</li>
+                  <li>底片數目 LED 提示燈：查看 LED 提示燈便可以立即知道相機餘下底片數目。</li>
+                </ul>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/08.gif" alt="" loading="lazy">
+                <ul>
+                  <li>外置廣角鏡頭：能捕捉比你肉眼看到更廣闊的畫面，視野擴充達 90°。外置廣角鏡的等效焦距為 21mm，讓你拍攝近至 0.3 米對焦距離的超級近攝照，最適合一大班人的群體自拍照。（隨鏡頭套裝附上）</li>
+                  <li>外置魚眼鏡頭：能拍下最具創意的 170° 魚眼照片，讓你拍攝近至 10cm 對焦距離的超級銳利之圓泡形魚眼影像，帶來無窮樂趣和驚喜！（隨鏡頭套裝附上）</li>
+                  <li>外置近攝鏡頭：近攝鏡頭讓你拍下最銳利的每個細節，近至 10cm 的對焦距離。（隨鏡頭套裝附上）</li>
+                </ul>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/09.gif" alt="" loading="lazy">
+                <ul>
+                  <li>可替換顏色濾片： 隨機附送四款顏色濾片，讓你把相機功能發揮到極致！</li>
+                  <li>附送不同小配件：還有更多小配件任由你展開無限想像 — 攝影秘技卡、紙相框及磁石貼均隨 Lomo’Instant Automat 相機附上，讓你輕鬆展示心愛的拍立得之作！</li>
+                  <li>使用 Fujifilm Instax Mini 底片：使用市面上常見的 Fujifilm Instax Mini 底片，大小如信用卡一樣，最適合放在錢包或在牆上展示了！想買到 Fujifilm Instax Mini 底片，可看看相機連底片套裝，或是於 <a class="text-danger" href="https://shop.lomography.com/hk/films/instant-film/fuji-instax-film-single-pack-10-instant-photos" target="_blank" rel="noreferrer noopener">Lomography 網上商店</a> 及世界各地的 <a class="text-danger" href="https://www.lomography.tw/about/stores" target="_blank" rel="noreferrer noopener">Gallery Store 門市</a> 選購。</li>
+                </ul>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/10.jpeg" alt="" loading="lazy">
+                <p class="fw-bold">設計</p>
+                <p>外形輕巧的 Lomo’Instant Automat 剛好可以放在口袋裡，便於隨時隨地拍攝。Lomo’Instant Automat 備有 4 款不同的時尚款式可供選擇。</p>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/11.jpeg" alt="" loading="lazy">
+                <div class="position-relative w-100 ratio-16x9">
+                  <div class="position-relative" style="padding-top: 56.25%;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100">
+                      <iframe src="//player.vimeo.com/video/181070949" width="100%" height="100%" allowfullscreen="" frameborder="0" id="player"></iframe>
+                    </div>
+                  </div>
+                </div>
+                
+                <h4 class="title">LOMOGRAPHY 與拍立得攝影</h4>
+                <p>Lomography 一直鍾情拍立得攝影。簡單按下快門，就能瞬間捕捉一刻的樂趣。拍立得照片非常適合掛在牆上欣賞，或是贈予摯友分享。不同於那幾百張儲存在手機的照片 — 拍立得都是實在的、有質感的回憶。利用拍立得分享快樂，傳遞愛的訊息，對我們來說，這就是攝影的意義。</p>
+                <p>所以 Lomography 費盡心思研發及壯大 Lomo'Instant 拍立得相機系列。先有輕巧而有著多種玩法的 Lomo'Instant 相機，及後我們帶來了更高階、同樣有不同創意功能的 Lomo'Instant Wide 相機。現在我們要將拍立得攝影體驗再度提升。結合了 Lomo'Instant 及 Lomo'Instant Wide 的優點再加入全新功能，Lomo'Instant Automat 是集大成的拍立得相機。</p>
+                <p>不論新手或是攝影達人都能輕鬆使用 Lomo'Instant Automat。它能自動調節光圈、快門及閃光燈輸出，確保你的照片在不同環境下擁有完美曝光。有精心設計的輕巧外型，包羅萬有的創意功能並且簡單使用。我們照顧你所有技術層面的考慮，你便可以放心去發揮創意，捕捉美妙的瞬間並隨時隨地與人分享。</p>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/12.avif" alt="" loading="lazy">
+  
+                <h4 class="title">技術規格</h4>
+                <p>適用底片：Fujifilm Instax Mini 拍立得底片</p>
+                <p>照片曝光範圍：62mm x 46mm</p>
+                <p>內置鏡頭焦距： 60mm （相等於 35mm ）</p>
+                <p>自動曝光系統：程式自動曝光 光圈：f/8 、f/22</p>
+                <p>快門速度：手動 B 快門 （B 快門模式：最長30秒）、1/250 - 8 秒 （自動拍攝模式）</p>
+                <p>曝光補償：+ 1 / - 1 EV （現場光）</p>
+                <p>出片裝置：電動</p>
+                <p>多重曝光功能： 有</p>
+                <p>內置閃光燈指數： 9 (m)</p>
+                <p>內置閃光燈：自動電子閃光燈，可設置無閃燈模式</p>
+                <p>最近對焦距離： 0.6m</p>
+                <p>三段式對焦：0.6m／1-2m／無限遠</p>
+                <p>三腳架孔：有</p>
+                <p>快門遙距控制：紅外線傳輸</p>
+                <p>底片數目顯示：LED 燈提示，倒數</p>
+                <p>電池型號： 2 枚 CR2 電池（2 x 3V）</p>
+                <p>遙控電池型號： 1 枚 CR1632 電池（3V）</p>
+                <p>濾鏡螺紋直徑：43mm</p>
+  
+                <h4 class="title">鏡頭及配件規格</h4>
+                <p>內置鏡頭－焦距 : 60mm （相等於 35mm）</p>
+                <p>外置廣角鏡頭－鏡頭相等焦距：21mm / 鏡頭視角：90° / 最近對焦距離： 0.3 m / 鏡頭接口：43mm 螺紋</p>
+                <p>外置魚眼鏡頭－鏡頭視角：170° / 最近對焦距離： 10cm / 鏡頭接口：43mm 螺紋</p>
+                <p>外置近攝鏡頭－最近對焦距離： 10cm / 鏡頭接口：43mm 螺紋（所有外置鏡頭包括在鏡頭套裝中）</p>
+                <p>配件（包括在單機或連鏡頭套裝）－顏色濾片、照片夾、雙面貼紙、磁石貼及拍攝秘技卡</p>
+                <figure class="figure w-100">
+                  <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/13.avif" alt="" loading="lazy">
+                  <figcaption class="figure-caption text-center">隨套裝附送的照片夾、雙面貼紙、磁石貼等配件</figcaption>
+                </figure>
+  
+                <h4 class="title">支持我們創造最棒的拍立得相機</h4>
+                <p>Lomography 一直努力利用拍立得攝影的知識和經驗，設計出與眾不同、具創意而且簡單易用的拍立得相機。我們很榮幸將這台最進階的拍立得相機獻給所有 Lomographer。現在，我們需要你的支持，令這個夢想實現！</p>
+                <p>為表示謝意，選購 Lomo'Instant Automat 相機的每一位支持者將可獲得折扣和豐富優惠！Lomo'Instant Automat（不包括外置鏡頭）的零售價暫定為美金 $150－$175，換句話說，以超級早鳥優惠選購相機可讓你節省至少 35%！</p>
+                <p>同時，第一批 Lomo'Instant Automat 預計將於 2016 年 12 月送出，請注意，我們不能確保相機的確實發貨日期。我們投入心血在項目上，但仍然需要在未來幾個月內完成幾個步驟去實現計劃。有你的支持，我們保證 Lomo'Instant Automat 相機將會是最令人期待的 Lomography 拍立得相機。</p>
+                <p>就如之前的 flyingV 計劃一樣，我們必定會履行承諾，並且緊密為你提供生產的最新消息。</p>
+                <figure class="figure w-100">
+                  <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/14.avif" alt="" loading="lazy">
+                  <figcaption class="figure-caption text-center">Lomo'Instant Automat: 初期構思繪圖</figcaption>
+                </figure>
+                <figure class="figure w-100">
+                  <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/15.avif" alt="" loading="lazy">
+                  <figcaption class="figure-caption text-center">Lomo'Instant Automat: 2D 設計圖片</figcaption>
+                </figure>
+                <figure class="figure w-100">
+                  <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/16.avif" alt="" loading="lazy">
+                  <figcaption class="figure-caption text-center">Lomo'Instant Automat: 配件 - 3D 設計圖</figcaption>
+                </figure>
+                <figure class="figure w-100">
+                  <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/17.avif" alt="" loading="lazy">
+                  <figcaption class="figure-caption text-center">Lomo'Instant Automat: 半完成 3D 圖片</figcaption>
+                </figure>
+                <figure class="figure w-100">
+                  <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/18.avif" alt="" loading="lazy">
+                  <figcaption class="figure-caption text-center">Lomo'Instant Automat: 的樣板正在製作中</figcaption>
+                </figure>
+                <div class="mt-2 fw-bold">
+                  <p><i class="far fa-check-circle"></i> 2016 年 6 月：初步構思</p>
+                  <p><i class="far fa-check-circle"></i> 2016 年 7 月：組裝配件及預備加工</p>
+                  <p><i class="far fa-check-circle"></i> 2016 年 8 月：完成樣板機，落實相機的外型設計及款式</p>
+                  <p><i class="far fa-check-circle"></i> 2016 年 9 月：包裝設計及測試樣板機</p>
+                  <p><i class="far fa-check-circle"></i> 2016 年 10 月：最後測試樣板及開始生產</p>
+                  <p><i class="far fa-check-circle"></i> 2016 年 11 月：生產 FlyingV 募資計畫訂單</p>
+                  <p><i class="far fa-check-circle"></i> 2016 年 12 月：Lomo'Instant Automat 準備好發貨</p>
+                </div>
+  
+                <h4 class="title">感謝支持 LOMO'INSTANT 家族</h4>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/19.avif" alt="" loading="lazy">
+                <p>Lomography 拍立得相機與市場上其他相機並不類同，得到大家一直以來的支持，我們亦感到十分榮幸。<a class="text-danger" href="https://microsites.lomography.com/lomo-instant-camera/zh" target="_blank" rel="noreferrer noopener">Lomo'Instant</a> 相機是拍立得攝影上的一大突破，擁有「個人化設定」選擇、不同外型設計及創意功能、適合晚間攝影的長時間曝光功能、能造出獨特照片的多重曝光功能。<a class="text-danger" href="https://microsites.lomography.com/lomo-instant-wide-camera" target="_blank" rel="noreferrer noopener">Lomo'Instant Wide</a> 相機亦非常適合拍攝風景和自拍，更大片幅的底片能仔細無誤地將眼前的美景捕捉下來。資深底片攝影師 <a class="text-danger" href="http://snapitseeit.com/lomoinstant-wide-review/" target="_blank" rel="noreferrer noopener">Matt Day</a> 尤其欣賞相機的遙控鏡頭蓋。Lomography 拍立得相機吸引了不少傳媒例如 PetaPizel、TechCrunch、Geeky Gadgets、Gizmag 及 Trend Hunter 爭相報導， 更被 PCMag 推選為「最佳拍立得相機」。</p>
+                <p>我們非常高興地收到不同的迴響，這使我們比以往更堅持推出創新概念來推動你的靈感。這就是 Lomography 設計拍立得相機的原因，大量出色功能配以全自動設置，從而比以往獲得更多創作自由。Lomo'Instant Automat 是所有人都適合使用的相機，希望你來加入這趟旅程，給生活帶來驚喜！</p>
+  
+                <h4 class="title">Lomography 是什麼</h4>
+                <p>Lomographic Society International 是一個世界性的群組，致力於推廣充滿實驗性和創意的攝影文化。Lomography 代表自由攝影風格 — 更貼近生活原意。透過創新的底片相機、拍立得相機、鏡頭、底片、及其他攝影配件，以攝影作為溝通橋樑，捕捉世界上美妙的瞬間。<a class="text-danger" href="https://www.lomography.tw/about/stores" target="_blank" rel="noreferrer noopener">Lomography Gallery Store</a> 及 Embassy Store 在世界各地給以全方位的 Lomography 產品，並提供空間舉行展覽、工作坊、及聯誼活動，以配合 Lomography 的發展需要。<a class="text-danger" href="https://www.lomography.com/" target="_blank" rel="noreferrer noopener">Lomography.com</a> 網站是一個發展蓬勃的網上平台，致力激發個人創造力，推動攝影實驗和發展各種可能性。透過 Lomographic Society 會員的熱情參與，Lomography 將所有世界上令人難以置信的圖像記錄下，這正是無數人眼中的 Lomography 形象。</p>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/20.png" alt="" loading="lazy">
+  
+                <h4 class="title">加購皇牌拍立得相機</h4>
+                <p>想以優惠的金額獲得更多額外的 Lomography 產品嗎？馬上在旁邊的回饋中選擇吧！加購將連同 Lomo'Instant Automat 相機同時發送。</p>
+                <ul>
+                  <li>以優惠價 NT$ 770 加購 3 盒 Fujifilm Instax Mini 底片（30 張）</li>
+                  <li>以 6 折優惠價 NT$ 2890 加購 Lomo'Instant 白色或黑色連鏡頭版本（原價 NT$ 4890）</li>
+                  <li>以 6 折優惠價 NT$ 3290 加購 Lomo'Instant Sanremo 啡色皮革連鏡頭版本 （原價 NT$ 5490）</li>
+                  <li>以 9 折優惠價 NT$ 7190 加購 Lomo'Instant Wide 黑色或白色連鏡頭版本（原價 NT$7990）</li>
+                  <li>以 9 折優惠價 NT$ 7390 加購 Lomo'Instant Wide Portobello 藍綠連鏡頭版本（原價 NT$7990）</li>
+                  <li>以 9 折優惠價 NT$ 7790 加購 Lomo'Instant Wide Central Park 啡色皮革連鏡頭版本（原價 NT$8790）</li>
+                </ul>
+                <p class="fw-bold">* 必需連同任何一項包括 Lomo'Instant Automat 的回饋項目購買、將與相機同時發送。</p>
+  
+                <h4 class="title">發貨詳情（本地免運）</h4>
+                <p>於 flyingV 平台上購買的 Lomo'Instant Automat 拍立得相機只限發送到台灣，而台灣本地免運費。由於相機將由香港出貨，在填寫地址時請提供英文地址，好讓我們能按時把相機送到你的手上。</p>
+                <p>若對發貨或收取的費用方面有任何疑問，歡迎在此提出。Lomography 團隊非常樂意為你解答。</p>
+                <img class="my-4 w-100" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/content/21.jpeg" alt="" loading="lazy">
+                <p>若對本公司之商品有銷售代理之興趣，歡迎以電郵聯繫 <a class="text-danger" href="mailto:orders-asia@lomography.com" target="_blank" rel="noreferrer noopener">orders-asia@lomography.com</a>。</p>
+  
+                <hr class="my-5">
+  
+                <p>特別嗚謝以下單位製作、場地拍攝提供及參與拍攝： <a class="text-danger" href="https://vimeo.com/hyden" target="_blank" rel="noreferrer noopener">Gabriel Hyden</a>, <a class="text-danger" href="http://64.37.49.43/~shawneng/" target="_blank" rel="noreferrer noopener">Shawn Engler</a>, <a class="text-danger" href="http://powernapover.com/" target="_blank" rel="noreferrer noopener">Vita Mak</a>, <a class="text-danger" href="http://tokyo-d-plex.com/~kazuhitohashimoto/yutatsunoda/top_photo.html" target="_blank" rel="noreferrer noopener">Yuta Tsunoda</a>, <a class="text-danger" href="http://www.altstadt.at/" target="_blank" rel="noreferrer noopener">Hotel Altstadt</a>, <a class="text-danger" href="http://atzgerei.com/" target="_blank" rel="noreferrer noopener">Atzgerei</a>, <a class="text-danger" href="http://www.motto.wien/" target="_blank" rel="noreferrer noopener">Motto</a>, <a class="text-danger" href="http://www.mochi.at/" target="_blank" rel="noreferrer noopener">Mochi</a>, <a class="text-danger" href="http://www.mingus.at/" target="_blank" rel="noreferrer noopener">Mingus Kindercafé</a>, <a class="text-danger" href="http://wienerhandwerk.com/" target="_blank" rel="noreferrer noopener">Wiener Handwerk</a>, EDITION Hotels 和 <a class="text-danger" href="http://www.par-c.com/" target="_blank" rel="noreferrer noopener">Parc Antique & Lifestyle</a> 以及 <a class="text-danger" href="https://www.instagram.com/hejwednesday/" target="_blank" rel="noreferrer noopener">G K Lee</a> for the photos of Sarah Baderna (0:22) 和 Paige Lemek (1:34) Boris Brkovic, <a class="text-danger" href="http://www.axelguelcher.com/" target="_blank" rel="noreferrer noopener">Axel Gülcher</a>, <a class="text-danger" href="https://www.danielbointner.at/" target="_blank" rel="noreferrer noopener">Daniel Bointner</a>, <a class="text-danger" href="https://www.instagram.com/hejwednesday/" target="_blank" rel="noreferrer noopener">G K Lee</a>, Jae Joseph, Dorian Braxton, Brandon Murphy, Jonathan Taylor, Krystal Ryan, <a class="text-danger" href="https://www.instagram.com/sarahfraser6/" target="_blank" rel="noreferrer noopener">Sarah Fraser</a>, <a class="text-danger" href="https://www.instagram.com/sarah___bader/" target="_blank" rel="noreferrer noopener">Sarah Baderna</a>, Minami Okabe, Emily Ngo, Thomas Yeung 及 Lomography 員工。</p>
+  
+                <h4 class="title">風險與變數</h4>
+                <p>早前我們成功地完成第二個 flyingV 專案。在過去的幾年裡，我們一直努力將 Lomo'Instant Automat 相機這個計劃實現。但是，亦我們清楚知道每個項目總有風險。我們致力為你提供一個完美的產品，盡一切努力滿足你的期望。第一批產品預計將於 2016 年 12 月送出，我們與生產商緊密合作，確保生產順利並準時送出。每當有最新消息，我們必定會第一時間通知你。我們已完全準備好這個令人興奮的挑戰，希望你能加入我們，完成這個驚人的項目！</p>
+              </div>
+              <div class="pt-4 d-flex flex-column-reverse" :class="{ 'd-none': currentContentIdx !== 1 }">
+                <div v-for="post in posts" class="my-4 p-4 bg-light border rounded">
+                  <p class="d-flex align-items-center fw-bold">
+                    <span>{{ post.title }}</span>
+                    <small class="ms-auto text-muted">
+                      <Small>{{ post.time }}</Small>
+                    </small>
+                  </p>
+                  <p>
+                    <small v-if="post.content" >
+                      <span class="text-break">{{ post.content }}</span>
+                      <a class="text-danger" :href="post.link">（繼續閱讀）</a>
+                    </small>
+                    <small v-if="!post.content">查看此篇進度更新需要 <strong>贊助本專案</strong> 才能瀏覽！</small>
+                  </p>
+                  <p class="mb-0">
+                    <small><i class="fas fa-comment"></i> 0 則回應</small>
+                  </p>
+                </div>
+              </div>
+              <div class="pt-4 d-flex flex-column-reverse" :class="{ 'd-none': currentContentIdx !== 2 }">
+                <div v-for="(comment, idx) in comments" class="py-4 d-flex rounded" :class="{ 'border-bottom': idx !== 0 }">
+                  <figure class="me-4">
+                    <img
+                      class="square-4 rounded-circle"
+                      onerror="this.src = 'https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/nonuser.svg'"
+                      :src="comment.userImage ?? 'https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/nonuser.svg'"
+                      alt=""
+                      loading="lazy"
+                    >
+                  </figure>
+                  <div class="w-100">
+                    <p class="d-flex">
+                      <strong v-if="!comment.userName">Anonymous</strong>
+                      <a v-if="comment.userName" class="fw-bold text-dark" :href="`https://www.flyingv.cc/users/${comment.userId}`">
+                        {{ comment.userName }}
+                      </a>
+                      <small class="ms-auto text-muted">
+                        <small>
+                          {{ new Date().getFullYear() - comment.time }} 年前
+                        </small>
+                      </small>
+                    </p>
+                    <p>
+                      <small v-for="breakContent in comment.content.split('\n')">
+                        {{ breakContent }}<br>
+                      </small>
+                    </p>
+                    <div v-if="comment.reply" class="p-4 w-100 bg-light">
+                      <p class="fw-bold">
+                        <a class="text-dark" href="https://www.flyingv.cc/users/22298">Lomography Taiwan</a>
+                      </p>
+                      <p>
+                        <small v-for="breakReply in comment.reply.split('\n')" class="text-break">
+                          {{ breakReply }}<br>
+                        </small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sticky-top col-12 col-md-4 px-md-0 px-lg-2">
+            <div class="content">
+              <h4 class="d-block d-md-none title">回饋選單</h4>
+            </div>
+            <ul
+              class="mx-auto px-lg-1 px-xl-4 px-xxl-5 list-unstyled"
+              :style="`${windowWidth < 768 ? 'max-width: 300px;' : ''}`"
+            >
+              <li v-for="(reward, idx) in rewards" class="my-4 border">
+                <img class="w-100" :src="`https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/rewards/${String(idx + 1).padStart(2, '0')}.png`" alt="" loading="lazy">
+                <div class="p-3">
+                  <p>
+                    <small>{{ reward.title }}</small>
+                  </p>
+                  <p class="lead fw-bold">
+                    ${{ thousandFormat(reward.price) }}
+                  </p>
+                  <hr>
+                  <small class="d-block">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <div class="text-muted"><small>贊助人數</small></div>
+                        <div class="text-black">{{ reward.sponsors }}人</div>
+                      </div>
+                      <div v-if="reward.maximum">
+                        <div class="text-muted"><small>限量</small></div>
+                        <div class="text-black">{{ reward.maximum }}個</div>
+                      </div>
+                      <div>
+                        <div class="text-muted"><small>預計寄送時間</small></div>
+                        <div class="text-black">{{ reward.shippingTime }}</div>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="text-muted"><small>寄送地點</small></div>
+                      <div class="text-black">{{ reward.shippingLocation }}</div>
+                    </div>
+                  </small>
+                  <div class="mt-3 mb-2">
+                    <div class="mx-autow-100 disabled">
+                      <button class="w-100 btn btn-gray" type="button" disabled><big>已結束</big></button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-5 text-white bg-dark">
+      <div class="container-md">
+        <div class="mb-5 px-3 px-md-0 d-flex justify-content-between">
+          <!-- left -->
+          <div :class="`${windowWidth < 768 ? '' : 'row gap-5'}`">
+            <div class="col mb-5 mb-lg-0">
+              <p class="mb-4 mb-md-5 fw-bold">關於</p>
+              <small>
+                <ul class="list-unstyled">
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/about">關於我們</a></li>
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/jobs">人才招募</a></li>
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/branding">商標使用規範</a></li>
+                </ul>
+              </small>
+            </div>
+            <div class="col mb-5 mb-lg-0">
+              <p class="mb-4 mb-md-5 fw-bold">條款</p>
+              <small>
+                <ul class="list-unstyled">
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/policy">網站使用條款</a></li>
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/contract">提案者合約</a></li>
+                </ul>
+              </small>
+            </div>
+            <div class="col mb-5 mb-lg-0">
+              <p class="mb-4 mb-md-5 fw-bold">協助</p>
+              <small>
+                <ul class="list-unstyled">
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/faq">常見問題</a></li>
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/guide">使用手冊</a></li>
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://www.flyingv.cc/viki">提案百科</a></li>
+                </ul>
+              </small>
+            </div>
+            <div class="col mb-5 mb-lg-0">
+              <p class="mb-4 mb-md-5 fw-bold">更多</p>
+              <small>
+                <ul class="list-unstyled">
+                  <li class="my-3"><a class="text-white text-hover-danger text-decoration-none" href="https://rolla.flyingv.cc">Rolla</a></li>
+                  <li class="my-3">
+                    <a
+                      class="text-white text-hover-danger text-decoration-none"
+                      href="https://shopee.tw/flyingv"
+                      target="_blank" rel="noreferrer noopener"
+                    >VCollection x 
+                      <svg style="margin-top: -3px" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32" style="margin-bottom: -2px;">
+                        <g fill="none" fill-rule="evenodd">
+                          <path fill="#FFF" d="M18.733 20.883c-.065.234-.168.468-.31.696-.032.05-.054.087-.07.115-.506.745-1.283 1.114-2.23 1.12-.886 0-1.919-.327-3.006-.99-.136-.076-.278-.163-.424-.266-.19-.13-.24-.386-.11-.577.131-.19.387-.239.577-.108.12.081.245.163.38.244.958.582 1.839.87 2.572.87.664 0 1.202-.25 1.545-.755.021-.039.043-.06.048-.077.098-.158.169-.326.218-.489.098-.337.081-.685-.054-1-.147-.332-.43-.653-.87-.92-.294-.179-.658-.337-1.099-.456-1.12-.315-1.946-.761-2.392-1.36-.49-.657-.527-1.45-.005-2.413.348-.636 1.06-1.033 1.963-1.104.777-.06 1.712.125 2.664.609.206.103.288.353.18.56-.11.207-.354.288-.56.18-.811-.414-1.583-.571-2.224-.523-.615.05-1.082.288-1.29.67-.347.635-.342 1.135-.06 1.516.327.44 1.007.783 1.953 1.05.51.146.946.331 1.305.549.593.359.99.81 1.202 1.3.217.505.244 1.038.097 1.56M13.59 7.904c.555-.957 1.288-1.55 2.077-1.55.783 0 1.522.593 2.066 1.545.473.816.805 1.881.924 3.083h-5.991c.125-1.197.45-2.267.924-3.078m10.189 3.078H19.69c-.125-1.387-.51-2.637-1.065-3.594-.74-1.267-1.778-2.056-2.958-2.056-1.18 0-2.224.783-2.958 2.056-.554.962-.94 2.207-1.066 3.594H7.55c-.484 0-.913.402-.88.886l.826 11.45c.087 1.24.859 2.257 2.316 2.257h11.712c1.31 0 2.212-.821 2.315-2.257l.821-11.456c.039-.484-.396-.88-.88-.88"></path>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </small>
+            </div>
+          </div>
+          <!-- right -->
+          <h2 class="text-end">
+            <a class="mx-2 mb-3 mb-lg-0 d-block d-md-inline-block text-white text-hover-danger text-decoration-none" href="https://www.facebook.com/FlyingV.cc" target="_blank" rel="noreferrer noopener">
+              <i class="fab fa-facebook-square"></i>
+            </a>
+            <a class="mx-2 d-block d-md-inline-block text-white text-hover-danger text-decoration-none" href="https://www.instagram.com/flyingv.cc" target="_blank" rel="noreferrer noopener">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </h2>
+        </div>
+        <div class="d-flex justify-content-center justify-md-content-between align-items-center">
+          <span class="d-none d-md-block">
+            <img src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/logo.svg" height="32" style="filter: contrast(0) brightness(2);" loading="lazy">
+          </span>
+          <span class="mx-4 d-none d-md-block flex-fill border-bottom"></span>
+          <span :style="`${windowWidth < 768 ? 'font-size: 12px;' : ''}`">
+            <small>FLYINGV © 2012-{{ new Date().getFullYear() }}. ALL RIGHTS RESERVED.</small>
+          </span>
+        </div>
+      </div>
+    </footer>
 
     <!-- Loader -->
     <div
