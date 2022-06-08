@@ -150,7 +150,7 @@
             <!-- video block -->
             <div class="position-relative w-100 ratio-16x9" @click="[...$el.children].forEach(el => el.classList.toggle('d-none'))">
               <!-- video cover -->
-              <img class="w-100 w-100 cursor-pointer" style="filter: brightness(.9);" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/cover.avif" alt="" loading="lazy">
+              <img onerror="document.querySelector('iframe').closest('.d-none').classList.remove('d-none')" class="w-100 w-100 cursor-pointer" style="filter: brightness(.9);" src="https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/project_13958/cover.avif" alt="" loading="lazy">
               <!-- play button in center -->
               <div
                 class="
