@@ -579,7 +579,9 @@
                       </a>
                     </h6>
                     <small class="mb-2 d-block text-muted">
-                      {{ new Date().getFullYear() - comment.time }}年前
+                      <small>
+                        {{ new Date().getFullYear() - comment.time }}年前
+                      </small>
                     </small>
                     <p>
                       <small v-for="breakContent in comment.content.split('\n')">
