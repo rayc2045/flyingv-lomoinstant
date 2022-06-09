@@ -67,8 +67,7 @@
                 <div class="me-1 d-sm-none nav-link dropdown">
                   <button
                     type="button"
-                    class="px-2 py-1 position-realtive bg-white shadow-none border-dark border-1"
-                    style="margin-top: .5rem;"
+                    class="mt-2 px-2 py-1 position-realtive bg-white shadow-none border-dark border-1"
                     id="dropdownMenuOffset"
                     data-mdb-toggle="dropdown"
                     aria-expanded="false"
@@ -108,8 +107,7 @@
             <div class="me-1 d-none d-sm-block dropdown">
               <button
                 type="button"
-                class="me-4 px-2 py-1 position-realtive bg-white shadow-none border-dark border-1"
-                style="margin-top: .5rem;"
+                class="mt-2 me-4 px-2 py-1 position-realtive bg-white shadow-none border-dark border-1"
                 id="dropdownMenuOffset"
                 data-mdb-toggle="dropdown"
                 aria-expanded="false"
@@ -187,8 +185,8 @@
                   <div class="position-absolute d-flex flex-column start-50">
                     <!-- circle -->
                     <div
-                      class="position-absolute top-50 d-flex justify-content-center align-items-center rounded-circle bg-danger"
-                      style="width: 1rem; height: 1rem; left: -1.5rem; transform: translateY(-50%)"
+                      class="position-absolute top-50 d-flex justify-content-center align-items-center square-1 rounded-circle bg-danger"
+                      style="left: -1.5rem; transform: translateY(-50%)"
                     >
                       <div
                         class=" rounded-circle bg-white"
@@ -222,8 +220,8 @@
                   <div class="position-absolute d-flex flex-column start-50">
                     <!-- circle -->
                     <div
-                      class="position-absolute top-50 d-flex justify-content-center align-items-center rounded-circle bg-danger"
-                      style="width: 1rem; height: 1rem; left: -1.5rem; transform: translateY(-50%)"
+                      class="position-absolute top-50 d-flex justify-content-center align-items-center square-1 rounded-circle bg-danger"
+                      style="left: -1.5rem; transform: translateY(-50%)"
                     >
                       <div
                         class=" rounded-circle bg-white"
@@ -566,7 +564,7 @@
                 <div v-for="(comment, idx) in comments" class="py-4 d-flex rounded" :class="{ 'border-bottom': idx !== 0 }">
                   <figure class="me-4">
                     <img
-                      class="square-4 rounded-circle"
+                      class="square-3 rounded-circle"
                       onerror="this.src = 'https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/nonuser.svg'"
                       :src="comment.userImage ?? 'https://raw.githubusercontent.com/rayc2045/flyingv-demo/main/images/nonuser.svg'"
                       alt=""
@@ -574,23 +572,21 @@
                     >
                   </figure>
                   <div class="w-100">
-                    <p class="d-flex">
+                    <h6 class="my-1">
                       <strong v-if="!comment.userName">Anonymous</strong>
                       <a v-if="comment.userName" class="fw-bold text-dark" :href="`https://www.flyingv.cc/users/${comment.userId}`">
                         {{ comment.userName }}
                       </a>
-                      <small class="ms-auto text-muted">
-                        <small>
-                          {{ new Date().getFullYear() - comment.time }} 年前
-                        </small>
-                      </small>
-                    </p>
+                    </h6>
+                    <small class="mb-2 d-block text-muted">
+                      {{ new Date().getFullYear() - comment.time }}年前
+                    </small>
                     <p>
                       <small v-for="breakContent in comment.content.split('\n')">
                         {{ breakContent }}<br>
                       </small>
                     </p>
-                    <div v-if="comment.reply" class="p-4 w-100 bg-light">
+                    <div v-if="comment.reply" class="p-4 pb-3 w-100 bg-light">
                       <p class="fw-bold">
                         <a class="text-dark" href="https://www.flyingv.cc/users/22298">Lomography Taiwan</a>
                       </p>
